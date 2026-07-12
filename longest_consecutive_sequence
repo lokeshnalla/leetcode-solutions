@@ -1,0 +1,31 @@
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+
+        # Convert the list into a set
+        # This allows O(1) average-time lookup
+        num = set(nums)
+
+        # Stores the length of the longest consecutive sequence
+        count = 0
+
+        # Traverse every unique number
+        for i in num:
+
+            # Check whether 'i' is the start of a sequence
+            # If (i - 1) is not present, then i is the first number
+            if i - 1 not in num:
+
+                # Current sequence length
+                n = 1
+
+                # Check consecutive numbers
+                # Example: i=5
+                # Check 6, 7, 8, ...
+                while i + n in num:
+                    n += 1
+
+                # Update the maximum sequence length
+                count = max(count, n)
+
+        # Return the longest consecutive sequence length
+        return count
